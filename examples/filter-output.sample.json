@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-05-10T21:20:00",
+  "input_file": "/tmp/candidates.json",
+  "stats": {
+    "total_candidates": 3,
+    "unique_candidates": 2,
+    "duplicate_candidates": 1,
+    "invalid_candidates": 0,
+    "existing_patents_in_inventory": 2049
+  },
+  "unique_candidates": [
+    {
+      "patent_id": "US20250012345A1",
+      "title": "Cooling system for AI servers",
+      "sector": "AI服务器液冷",
+      "source": "agent-b",
+      "normalized_patent_id": "US20250012345A1"
+    },
+    {
+      "title": "WO2026999999A1 advanced packaging system",
+      "sector": "AI芯片封装",
+      "source": "agent-c",
+      "normalized_patent_id": "WO2026999999A1"
+    }
+  ],
+  "duplicate_candidates": [
+    {
+      "patent_id": "CN118302107A",
+      "title": "一种共封装光学装置",
+      "sector": "CPO共封装光学",
+      "source": "agent-a",
+      "normalized_patent_id": "CN118302107A",
+      "duplicate_reason": "already_in_knowledge_base"
+    }
+  ],
+  "invalid_candidates": []
+}

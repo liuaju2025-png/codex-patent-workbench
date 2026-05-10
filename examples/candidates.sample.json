@@ -1,0 +1,19 @@
+[
+  {
+    "patent_id": "CN118302107A",
+    "title": "一种共封装光学装置",
+    "sector": "CPO共封装光学",
+    "source": "agent-a"
+  },
+  {
+    "patent_id": "US20250012345A1",
+    "title": "Cooling system for AI servers",
+    "sector": "AI服务器液冷",
+    "source": "agent-b"
+  },
+  {
+    "title": "WO2026999999A1 advanced packaging system",
+    "sector": "AI芯片封装",
+    "source": "agent-c"
+  }
+]

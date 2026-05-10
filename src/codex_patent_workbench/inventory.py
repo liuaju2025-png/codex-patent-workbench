@@ -103,3 +103,8 @@ def load_inventory_index() -> dict:
     if not INDEX_PATH.exists():
         return build_inventory_index()
     return json.loads(INDEX_PATH.read_text(encoding="utf-8"))
+
+
+def get_patent_record(patent_id: str) -> dict | None:
+    payload = load_inventory_index()
+    return payload.get("patents", {}).get(patent_id)

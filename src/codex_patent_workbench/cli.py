@@ -5,7 +5,8 @@ import json
 from pathlib import Path
 
 from .dedup import filter_candidates
-from .inventory import build_inventory_index, load_inventory_index
+from .inventory import build_inventory_index, get_patent_record, load_inventory_index
+from .patent_id import normalize_patent_id
 
 
 def cmd_build_index(_: argparse.Namespace) -> int:
@@ -26,6 +27,17 @@ def cmd_filter_candidates(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_inspect_patent(args: argparse.Namespace) -> int:
+    patent_id = normalize_patent_id(args.patent_id)
+    if not patent_id:
+        raise SystemExit(f"Invalid patent id: {args.patent_id}")
+    record = get_patent_record(patent_id)
+    if not record:
+        raise SystemExit(f"Patent not found in inventory: {patent_id}")
+    print(json.dumps(record, ensure_ascii=False, indent=2))
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Codex patent workbench CLI")
     subparsers = parser.add_subparsers(dest="command", required=True)
@@ -39,6 +51,10 @@ def build_parser() -> argparse.ArgumentParser:
     filter_parser = subparsers.add_parser("filter-candidates", help="Filter patent candidates with dedup enabled.")
     filter_parser.add_argument("--input", required=True, help="Path to candidate patent JSON list.")
     filter_parser.set_defaults(func=cmd_filter_candidates)
+
+    inspect_parser = subparsers.add_parser("inspect-patent", help="Inspect a patent record from the built inventory.")
+    inspect_parser.add_argument("patent_id", help="Patent id to inspect, such as CN118302107A.")
+    inspect_parser.set_defaults(func=cmd_inspect_patent)
 
     return parser
 
